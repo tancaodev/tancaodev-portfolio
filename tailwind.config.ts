@@ -85,7 +85,10 @@ export default {
             borderColor: "transparent"
           },
           "100%": {
-            borderColor: "black"
+            borderColor: "black",
+            "@media (prefers-color-scheme: dark)": {
+              borderColor: "white"
+            }
           }
         },
         fadeIn: {

@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="container mx-auto py-8 border-t">
+    <footer className="container mx-auto py-8 border-t border-border">
       <div className="flex flex-col md:flex-row justify-between items-center">
         <p className="text-muted-foreground">
           © {new Date().getFullYear()} Portfolio. All rights reserved.
