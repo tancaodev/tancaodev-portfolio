@@ -1,10 +1,17 @@
 
 import React, { useState, useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { Menu } from "lucide-react";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerClose,
+  DrawerTrigger
+} from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,16 +22,12 @@ const Navigation: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? "bg-white dark:bg-gray-900 shadow-md py-3" 
-          : "bg-transparent py-5"
+          : "bg-transparent dark:bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto flex justify-between items-center">
@@ -51,6 +54,11 @@ const Navigation: React.FC = () => {
               </a>
             </li>
             <li>
+              <a href="#tech-stack" className="nav-link">
+                Tech Stack
+              </a>
+            </li>
+            <li>
               <a href="#contact" className="nav-link">
                 Contact
               </a>
@@ -59,75 +67,76 @@ const Navigation: React.FC = () => {
           <ThemeToggle />
         </div>
         
-        {/* Mobile Menu Button */}
+        {/* Mobile Navigation with Drawer */}
         <div className="flex items-center md:hidden space-x-2">
           <ThemeToggle />
-          <button
-            onClick={toggleMobileMenu}
-            className="text-foreground"
-            aria-label="Toggle menu"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+          <Drawer>
+            <DrawerTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-foreground">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent className="p-4">
+              <div className="mt-6 mb-4 px-2">
+                <h3 className="text-lg font-semibold mb-4">Menu</h3>
+                <ul className="space-y-4">
+                  <li>
+                    <DrawerClose asChild>
+                      <a 
+                        href="#about" 
+                        className="block py-2 px-4 hover:bg-accent rounded-md transition-colors"
+                      >
+                        About
+                      </a>
+                    </DrawerClose>
+                  </li>
+                  <li>
+                    <DrawerClose asChild>
+                      <a 
+                        href="#experience" 
+                        className="block py-2 px-4 hover:bg-accent rounded-md transition-colors"
+                      >
+                        Experience
+                      </a>
+                    </DrawerClose>
+                  </li>
+                  <li>
+                    <DrawerClose asChild>
+                      <a 
+                        href="#projects" 
+                        className="block py-2 px-4 hover:bg-accent rounded-md transition-colors"
+                      >
+                        Projects
+                      </a>
+                    </DrawerClose>
+                  </li>
+                  <li>
+                    <DrawerClose asChild>
+                      <a 
+                        href="#tech-stack" 
+                        className="block py-2 px-4 hover:bg-accent rounded-md transition-colors"
+                      >
+                        Tech Stack
+                      </a>
+                    </DrawerClose>
+                  </li>
+                  <li>
+                    <DrawerClose asChild>
+                      <a 
+                        href="#contact" 
+                        className="block py-2 px-4 hover:bg-accent rounded-md transition-colors"
+                      >
+                        Contact
+                      </a>
+                    </DrawerClose>
+                  </li>
+                </ul>
+              </div>
+            </DrawerContent>
+          </Drawer>
         </div>
       </div>
-      
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-900 shadow-md">
-          <ul className="flex flex-col items-center py-4">
-            <li className="py-2">
-              <a 
-                href="#about" 
-                className="nav-link"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                About
-              </a>
-            </li>
-            <li className="py-2">
-              <a 
-                href="#experience" 
-                className="nav-link"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Experience
-              </a>
-            </li>
-            <li className="py-2">
-              <a 
-                href="#projects" 
-                className="nav-link"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Projects
-              </a>
-            </li>
-            <li className="py-2">
-              <a 
-                href="#contact" 
-                className="nav-link"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
     </nav>
   );
 };

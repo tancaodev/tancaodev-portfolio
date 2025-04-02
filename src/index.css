@@ -97,7 +97,8 @@
   }
   
   .typing-text {
-    @apply overflow-hidden whitespace-nowrap border-r-4 border-black dark:border-white animate-typing animate-blink;
+    @apply overflow-hidden whitespace-nowrap border-r-4 border-black dark:border-white animate-typing;
+    animation: typing 3.5s steps(40, end), blink .75s step-end infinite;
   }
   
   .nav-link {
@@ -115,4 +116,14 @@
   .fade-in-section.is-visible {
     @apply animate-fade-in;
   }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: currentColor }
 }
