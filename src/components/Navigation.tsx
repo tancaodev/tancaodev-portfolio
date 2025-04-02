@@ -26,7 +26,7 @@ const Navigation: React.FC = () => {
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? "bg-white dark:bg-gray-900 shadow-md py-3" 
+          ? "bg-white dark:bg-muted shadow-md py-3" 
           : "bg-transparent dark:bg-transparent py-5"
       }`}
     >
@@ -77,7 +77,7 @@ const Navigation: React.FC = () => {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </DrawerTrigger>
-            <DrawerContent className="p-4">
+            <DrawerContent className="p-4 bg-background dark:bg-muted">
               <div className="mt-6 mb-4 px-2">
                 <h3 className="text-lg font-semibold mb-4">Menu</h3>
                 <ul className="space-y-4">
