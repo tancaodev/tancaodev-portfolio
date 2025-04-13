@@ -1,0 +1,11 @@
+.BgAnimation__gradient {
+    transition: all 0.5s ease-in-out;
+}
+
+.BgAnimation__gradient-light {
+    stop-color: #000000;
+}
+
+.BgAnimation__gradient-dark {
+    stop-color: #FBFBFB;
+} 
