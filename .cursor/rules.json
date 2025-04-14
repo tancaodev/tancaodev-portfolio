@@ -74,7 +74,8 @@
     "git": {
         "enableSmartCommit": true,
         "confirmSync": false,
-        "autofetch": true
+        "autofetch": true,
+        "fetch": true
     },
     "search": {
         "exclude": {
@@ -98,6 +99,18 @@
                 "uninstall": false,
                 "update": false
             }
+        },
+        "npm run": {
+            "dev": false,
+            "test": false,
+            "build": false,
+            "start": false,
+            "lint": false
+        },
+        "npm": {
+            "install": false,
+            "uninstall": false,
+            "update": false
         }
     }
 } 
