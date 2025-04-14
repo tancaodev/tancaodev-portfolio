@@ -17,7 +17,7 @@ const Index: React.FC = () => {
     return (
         <div className='min-h-screen'>
             <Navigation />
-            <Hero />
+            {/* <Hero /> */}
 
             <FadeInSection>
                 <About />

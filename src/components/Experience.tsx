@@ -1,85 +1,67 @@
+const Experience: React.FC = () => {
+    const experiences = [
+        {
+            title: 'Junior Frontend Developer',
+            company: 'Meowcart Ecommerce',
+            period: 'July 2024 - Feb 2025',
+            description: [
+                'Worked on various Shopify projects, including Crocs, FitFlop, Babeeni, SEESON, Bupbes,LiiLash,...',
+                'Developed and maintained responsive web applications for clients across various industries. Collaborated with designers to ensure pixel-perfect implementations.',
+                'Enhancing user experience through bug fixing and performance optimization.',
+                'Collaborated with the Back-End team for seamless API integration.',
+                'Engaged directly with clients to gather requirements, develop new features, and assist in the integration of third-party services and platforms.'
+            ],
+            skills: ['HTML', 'CSS', 'JavaScript', 'React.js', 'Firebase', 'Shopify', 'Liquid']
+        },
+        {
+            title: 'Intern/Fresher Software Engineer',
+            company: 'Meowcart Ecommerce',
+            period: 'April 2024 - July 2024',
+            description: [
+                'Participated in learning and working with Shopify Theme and Shopify App platforms.',
+                "Collaborated with the Intern team to develop Meow-Login app, an application integrated into users' Shopify Theme stores, enabling phone number login and OTP verification via SMS/Zalo."
+            ]
+        }
+    ]
 
-import React from "react";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-
-interface ExperienceItemProps {
-  title: string;
-  company: string;
-  period: string;
-  description: string;
-  skills: string[];
+    return (
+        <section id='experience' className='container mx-auto'>
+            <div className='relative px-4 sm:px-8 lg:px-12'>
+                <div className='mx-auto max-w-2xl lg:max-w-5xl'>
+                    <h2 className='section-title'>Work Experience</h2>
+                    <div className='max-w-3xl mx-auto'>
+                        <ol className='relative border-s border-gray-200 dark:border-gray-700'>
+                            {experiences.map((exp, index) => (
+                                <li key={index} className={`ms-4 ${index !== experiences.length - 1 ? 'mb-10' : ''}`}>
+                                    <div className='absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700'></div>
+                                    <time className='mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500'>{exp.period}</time>
+                                    <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>{exp.title}</h3>
+                                    <p className='text-base font-normal text-gray-500 dark:text-gray-400'>{exp.company}</p>
+                                    {Array.isArray(exp.description) ? (
+                                        <ul className='mb-4 text-base font-normal text-gray-500 dark:text-gray-400 list-disc list-inside space-y-2'>
+                                            {exp.description.map((item, descIndex) => (
+                                                <li key={descIndex}>{item}</li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        <p className='mb-4 text-base font-normal text-gray-500 dark:text-gray-400'>{exp.description}</p>
+                                    )}
+                                    <div className='flex flex-wrap gap-2'>
+                                        {exp?.skills &&
+                                            exp.skills.map((skill, skillIndex) => (
+                                                <span key={skillIndex} className='bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm'>
+                                                    {skill}
+                                                </span>
+                                            ))}
+                                    </div>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
 }
 
-const ExperienceItem: React.FC<ExperienceItemProps> = ({
-  title,
-  company,
-  period,
-  description,
-  skills,
-}) => {
-  return (
-    <Card className="p-6 mb-6">
-      <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-        <div>
-          <h3 className="text-xl font-medium">{title}</h3>
-          <p className="text-lg text-muted-foreground">{company}</p>
-        </div>
-        <p className="text-sm text-muted-foreground mt-1 md:mt-0">{period}</p>
-      </div>
-      <p className="mb-4">{description}</p>
-      <div className="flex flex-wrap gap-2">
-        {skills.map((skill, index) => (
-          <span
-            key={index}
-            className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm"
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
-    </Card>
-  );
-};
-
-const Experience: React.FC = () => {
-  const experiences = [
-    {
-      title: "Senior Software Engineer",
-      company: "Tech Innovations Inc.",
-      period: "Jan 2021 - Present",
-      description:
-        "Leading the frontend development team, architecting scalable solutions, and mentoring junior developers. Implemented new features that increased user engagement by 45%.",
-      skills: ["React", "TypeScript", "Node.js", "AWS", "Redux"],
-    },
-    {
-      title: "Software Engineer",
-      company: "WebSolutions Co.",
-      period: "Mar 2019 - Dec 2020",
-      description:
-        "Developed and maintained responsive web applications for clients across various industries. Collaborated with designers to ensure pixel-perfect implementations.",
-      skills: ["JavaScript", "React", "CSS", "MongoDB", "Express"],
-    },
-    {
-      title: "Junior Developer",
-      company: "StartupHub",
-      period: "Jun 2017 - Feb 2019",
-      description:
-        "Built and integrated RESTful APIs, implemented UI components, and participated in agile development processes. Improved site performance by 35%.",
-      skills: ["HTML", "CSS", "JavaScript", "Git", "PHP"],
-    },
-  ];
-
-  return (
-    <section id="experience" className="container mx-auto">
-      <h2 className="section-title">Work Experience</h2>
-      <div className="max-w-3xl mx-auto">
-        {experiences.map((exp, index) => (
-          <ExperienceItem key={index} {...exp} />
-        ))}
-      </div>
-    </section>
-  );
-};
-
-export default Experience;
+export default Experience

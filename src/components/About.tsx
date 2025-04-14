@@ -1,8 +1,8 @@
 import Typewriter from 'typewriter-effect'
 
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
-import { Github, Linkedin, Twitter, Code2 } from 'lucide-react'
-import { FacebookIcon, GithubIcon, InstagramIcon, LinkedinIcon } from './Icons'
+import { FaGithub } from 'react-icons/fa'
+import { FaLinkedin } from 'react-icons/fa'
+import { FaFacebook } from 'react-icons/fa'
 
 const About: React.FC = () => {
     return (
@@ -22,46 +22,31 @@ const About: React.FC = () => {
                                 />
                             </h2>
                             <p className='text-zinc-600 dark:text-zinc-400 mb-4'>
-                                Full Stack Developer passionate about building web applications and exploring new technologies. I love solving complex problems
-                                and sharing insights from my journey.
+                                I am a Developer passionate about building web applications and mobile apps, as well as exploring new technologies. My goal is
+                                to become a <span className='text-teal-500 dark:text-teal-400 font-semibold'>Software Engineer</span> in the future.
                             </p>
 
                             <div className='flex space-x-4'>
-                                <GithubIcon />
-                                <LinkedinIcon />
-                                <FacebookIcon />
-                                <InstagramIcon />
                                 <a
-                                    href='https://github.com'
+                                    href='https://github.com/tancaodev'
                                     target='_blank'
-                                    rel='noopener noreferrer'
-                                    className='text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
+                                    className='inline-flex items-center justify-center h-8 w-8 transition-transform duration-300 hover:scale-110'
                                 >
-                                    <Github className='h-5 w-5' />
+                                    <FaGithub size={32} />
                                 </a>
                                 <a
-                                    href='https://linkedin.com'
+                                    href='https://www.linkedin.com/in/tancao1803/'
                                     target='_blank'
-                                    rel='noopener noreferrer'
-                                    className='text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
+                                    className='inline-flex items-center justify-center h-8 w-8 transition-transform duration-300 hover:scale-110'
                                 >
-                                    <Linkedin className='h-5 w-5' />
+                                    <FaLinkedin size={34} />
                                 </a>
                                 <a
-                                    href='https://stackoverflow.com'
+                                    href='https://www.facebook.com/tan.cao.52056/'
                                     target='_blank'
-                                    rel='noopener noreferrer'
-                                    className='text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
+                                    className='inline-flex items-center justify-center h-8 w-8 transition-transform duration-300 hover:scale-110'
                                 >
-                                    <Code2 className='h-5 w-5' />
-                                </a>
-                                <a
-                                    href='https://twitter.com'
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    className='text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
-                                >
-                                    <Twitter className='h-5 w-5' />
+                                    <FaFacebook size={32} />
                                 </a>
                             </div>
                         </div>
@@ -98,17 +83,11 @@ const About: React.FC = () => {
                     <div className='grid grid-cols-1 md:grid-cols-1 gap-8 mt-4'>
                         <div>
                             <p className='text-lg mb-4'>
-                                I'm a software engineer with 5+ years of experience in full-stack development, specializing in React, Node.js, and TypeScript.
-                                I'm passionate about building products that make a difference in people's lives.
+                                I'm a software engineer with 1+ years of experience in front-end development, specializing in React.js, Next.js, and TypeScript.
+                                I'm passionate about building products that make a difference in people's lives or creating unique and innovative applications
+                                with interesting features.
                             </p>
-                            <p className='text-lg mb-4'>
-                                My journey in tech began during my university years, where I started building websites for local businesses. Since then, I've
-                                worked with startups and established companies to deliver scalable, user-friendly applications.
-                            </p>
-                            <p className='text-lg'>
-                                When I'm not coding, you can find me exploring hiking trails, reading science fiction, or experimenting with new cooking
-                                recipes.
-                            </p>
+                            <p className='text-lg'>When I'm not coding, you can find me playing games, volleyball, or hanging out with friends.</p>
                         </div>
                     </div>
                 </div>
