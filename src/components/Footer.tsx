@@ -1,6 +1,3 @@
-
-import React from "react";
-
 const Footer: React.FC = () => {
   return (
     <footer className="container mx-auto py-8 border-t border-border">
@@ -10,7 +7,7 @@ const Footer: React.FC = () => {
         </p>
         <div className="mt-4 md:mt-0">
           <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-            Designed & Built by Suraj
+            Designed & Built by TanCaoDev
           </a>
         </div>
       </div>

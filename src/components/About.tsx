@@ -1,10 +1,29 @@
 import Typewriter from 'typewriter-effect'
+import { Button } from '@/components/ui/button'
+import { Download } from 'lucide-react'
+import { useToast } from '@/components/ui/use-toast'
 
 import { FaGithub } from 'react-icons/fa'
 import { FaLinkedin } from 'react-icons/fa'
 import { FaFacebook } from 'react-icons/fa'
 
 const About: React.FC = () => {
+    const { toast } = useToast()
+
+    const handleDownloadCV = () => {
+        const link = document.createElement('a')
+        link.href = '/assets/TanCao_CV.pdf'
+        link.download = 'TanCao_CV.pdf'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+
+        toast({
+            title: 'CV downloaded successfully!',
+            description: 'Thank you for your interest in my profile.'
+        })
+    }
+
     return (
         <section id='about' className='container mx-auto'>
             <div className='relative px-4 sm:px-8 lg:px-12'>
@@ -26,28 +45,34 @@ const About: React.FC = () => {
                                 to become a <span className='text-teal-500 dark:text-teal-400 font-semibold'>Software Engineer</span> in the future.
                             </p>
 
-                            <div className='flex space-x-4'>
-                                <a
-                                    href='https://github.com/tancaodev'
-                                    target='_blank'
-                                    className='inline-flex items-center justify-center h-8 w-8 transition-transform duration-300 hover:scale-110'
-                                >
-                                    <FaGithub size={32} />
-                                </a>
-                                <a
-                                    href='https://www.linkedin.com/in/tancao1803/'
-                                    target='_blank'
-                                    className='inline-flex items-center justify-center h-8 w-8 transition-transform duration-300 hover:scale-110'
-                                >
-                                    <FaLinkedin size={34} />
-                                </a>
-                                <a
-                                    href='https://www.facebook.com/tan.cao.52056/'
-                                    target='_blank'
-                                    className='inline-flex items-center justify-center h-8 w-8 transition-transform duration-300 hover:scale-110'
-                                >
-                                    <FaFacebook size={32} />
-                                </a>
+                            <div className='flex items-center gap-4 mb-4'>
+                                <Button className='rounded-full px-6 flex items-center gap-2' onClick={handleDownloadCV}>
+                                    <Download className='h-4 w-4' />
+                                    Download CV
+                                </Button>
+                                <div className='flex space-x-4'>
+                                    <a
+                                        href='https://github.com/tancaodev'
+                                        target='_blank'
+                                        className='inline-flex items-center justify-center h-8 w-8 transition-transform duration-300 hover:scale-110'
+                                    >
+                                        <FaGithub size={32} />
+                                    </a>
+                                    <a
+                                        href='https://www.linkedin.com/in/tancao1803/'
+                                        target='_blank'
+                                        className='inline-flex items-center justify-center h-8 w-8 transition-transform duration-300 hover:scale-110'
+                                    >
+                                        <FaLinkedin size={34} />
+                                    </a>
+                                    <a
+                                        href='https://www.facebook.com/tan.cao.52056/'
+                                        target='_blank'
+                                        className='inline-flex items-center justify-center h-8 w-8 transition-transform duration-300 hover:scale-110'
+                                    >
+                                        <FaFacebook size={32} />
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
