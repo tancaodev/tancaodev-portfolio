@@ -1,4 +1,7 @@
+import React from 'react'
+
 const Footer: React.FC = () => {
+  console.log('Footer rendered')
   return (
     <footer className="container mx-auto py-8 border-t border-border">
       <div className="flex flex-col md:flex-row justify-between items-center">
@@ -15,4 +18,4 @@ const Footer: React.FC = () => {
   );
 };
 
-export default Footer;
+export default React.memo(Footer);

@@ -1,45 +1,45 @@
-import React, { useEffect } from 'react'
+import React, { lazy, Suspense } from 'react'
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
-import About from '@/components/About'
-import Experience from '@/components/Experience'
-import Projects from '@/components/Projects'
-import TechStack from '@/components/TechStack'
-import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
 import FadeInSection from '@/components/FadeInSection'
+import Footer from '@/components/Footer'
+
+// Lazy load các components lớn
+const About = lazy(() => import('@/components/About'))
+const Experience = lazy(() => import('@/components/Experience'))
+const Projects = lazy(() => import('@/components/Projects'))
+const TechStack = lazy(() => import('@/components/TechStack'))
+const Contact = lazy(() => import('@/components/Contact'))
 
 const Index: React.FC = () => {
-    useEffect(() => {
-        document.title = 'TanCaoDev - Portfolio'
-    }, [])
-
     return (
         <div className='min-h-screen'>
             <Navigation />
             {/* <Hero /> */}
 
-            <FadeInSection>
-                <About />
-            </FadeInSection>
+            <Suspense fallback={<div className='h-screen flex items-center justify-center'>Loading...</div>}>
+                <FadeInSection>
+                    <About />
+                </FadeInSection>
 
-            <FadeInSection>
-                <Experience />
-            </FadeInSection>
+                <FadeInSection>
+                    <Experience />
+                </FadeInSection>
 
-            <FadeInSection>
-                <Projects />
-            </FadeInSection>
+                <FadeInSection>
+                    <Projects />
+                </FadeInSection>
 
-            <FadeInSection>
-                <TechStack />
-            </FadeInSection>
+                <FadeInSection>
+                    <TechStack />
+                </FadeInSection>
 
-            <FadeInSection>
-                <Contact />
-            </FadeInSection>
+                <FadeInSection>
+                    <Contact />
+                </FadeInSection>
 
-            <Footer />
+                <Footer />
+            </Suspense>
         </div>
     )
 }
