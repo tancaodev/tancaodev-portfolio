@@ -26,8 +26,6 @@ const Experience: React.FC = () => {
 
     return (
         <section id='experience' className='container mx-auto'>
-            <div className='relative px-4 sm:px-8 lg:px-12'>
-                <div className='mx-auto max-w-2xl lg:max-w-5xl'>
                     <h2 className='section-title'>Work Experience</h2>
                     <div className='max-w-3xl mx-auto'>
                         <ol className='relative border-s border-gray-200 dark:border-gray-700'>
@@ -58,8 +56,6 @@ const Experience: React.FC = () => {
                             ))}
                         </ol>
                     </div>
-                </div>
-            </div>
         </section>
     )
 }

@@ -7,7 +7,12 @@ import { Button } from '@/components/ui/button'
 const Navigation: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [activeSection, setActiveSection] = useState('about')
-    const sections = useRef<{ [key: string]: IntersectionObserverEntry }>({})
+    // const sections = useRef<{ [key: string]: IntersectionObserverEntry }>({})
+    const [sections, setSections] = useState<{ [key: string]: IntersectionObserverEntry }>({})
+
+    // console.log('isScrolled', isScrolled)
+    // console.log('activeSection', activeSection)
+    // console.log('sections', sections)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,16 +26,18 @@ const Navigation: React.FC = () => {
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
+                const updatedSections: { [key: string]: IntersectionObserverEntry } = { ...sections }
                 entries.forEach((entry) => {
                     const id = entry.target.id
-                    sections.current[id] = entry
+                    updatedSections[id] = entry
                 })
+                setSections(updatedSections)
 
                 // Tìm section đang hiển thị nhiều nhất
                 let maxVisible = 0
                 let currentSection = 'about'
 
-                Object.entries(sections.current).forEach(([id, entry]) => {
+                Object.entries(updatedSections).forEach(([id, entry]) => {
                     if (entry.isIntersecting && entry.intersectionRatio > maxVisible) {
                         maxVisible = entry.intersectionRatio
                         currentSection = id
@@ -42,13 +49,12 @@ const Navigation: React.FC = () => {
             { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] }
         )
 
-        // Quan sát tất cả các section
         document.querySelectorAll('section[id]').forEach((section) => {
             observer.observe(section)
         })
 
         return () => observer.disconnect()
-    }, [])
+    }, [sections])
 
     const isActive = (section: string) => activeSection === section
 

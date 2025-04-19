@@ -131,37 +131,33 @@ const TechStack: React.FC = () => {
 
     return (
         <section id='tech-stack' className='container mx-auto'>
-            <div className='relative px-4 sm:px-8 lg:px-12'>
-                <div className='mx-auto max-w-2xl lg:max-w-5xl'>
-                    <h2 className='section-title'>Tech Stack</h2>
-                    <p className='text-zinc-600 dark:text-zinc-400 mb-12'>Here are some of my skills which I have been working on for the past 2 years.</p>
-                    <div className='w-full flex flex-wrap gap-6 justify-center'>
-                        {Object.entries(categories).map(([key, title]) => (
-                            <div
-                                key={key}
-                                className='group relative flex flex-col items-start rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition h-full w-full max-w-[500px]'
-                            >
-                                <h3 className='text-2xl text-center font-semibold mb-6 text-zinc-700 dark:text-zinc-300 w-full'>{title}</h3>
+            <h2 className='section-title'>Tech Stack</h2>
+            <p className='text-zinc-600 dark:text-zinc-400 mb-12'>Here are some of my skills which I have been working on for the past 2 years.</p>
+            <div className='w-full flex flex-wrap gap-6 justify-center'>
+                {Object.entries(categories).map(([key, title]) => (
+                    <div
+                        key={key}
+                        className='group relative flex flex-col items-start rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition h-full w-full max-w-[500px]'
+                    >
+                        <h3 className='text-2xl text-center font-semibold mb-6 text-zinc-700 dark:text-zinc-300 w-full'>{title}</h3>
 
-                                <div className='flex flex-wrap justify-center gap-3 w-full'>
-                                    {technologies
-                                        .filter((tech) => tech.category === key)
-                                        .map((tech) => (
-                                            <div
-                                                key={tech.name}
-                                                className='flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400'
-                                            >
-                                                {tech.icon}
-                                                <span className='text-sm'>{tech.name}</span>
-                                            </div>
-                                        ))}
-                                </div>
-                                <span className='absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0' />
-                                <span className='absolute inset-y-1 left-0 w-px bg-gradient-to-b from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0' />
-                            </div>
-                        ))}
+                        <div className='flex flex-wrap justify-center gap-3 w-full'>
+                            {technologies
+                                .filter((tech) => tech.category === key)
+                                .map((tech) => (
+                                    <div
+                                        key={tech.name}
+                                        className='flex items-center gap-2 px-3 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400'
+                                    >
+                                        {tech.icon}
+                                        <span className='text-sm'>{tech.name}</span>
+                                    </div>
+                                ))}
+                        </div>
+                        <span className='absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0' />
+                        <span className='absolute inset-y-1 left-0 w-px bg-gradient-to-b from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0' />
                     </div>
-                </div>
+                ))}
             </div>
         </section>
     )

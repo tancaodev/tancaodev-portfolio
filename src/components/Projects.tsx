@@ -1,6 +1,3 @@
-import React from 'react'
-import { ExternalLink, Github } from 'lucide-react'
-
 interface ProjectProps {
     title: string
     description: string
@@ -24,6 +21,11 @@ const Project: React.FC<ProjectProps> = ({ title, description, technologies, liv
                     {isLive && (
                         <span className='ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-800/30 dark:text-green-400'>
                             Live
+                        </span>
+                    )}
+                    {!isLive && (
+                        <span className='ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-800/30 dark:text-red-400'>
+                            Discontinued
                         </span>
                     )}
                 </div>
@@ -57,39 +59,50 @@ const Project: React.FC<ProjectProps> = ({ title, description, technologies, liv
 const Projects: React.FC = () => {
     const projects = [
         {
-            title: 'MCP Server Salesforce',
-            description: 'Salesforce integration for MCP Server',
-            technologies: ['Salesforce', 'Salesforce CLI', 'Salesforce DX'],
-            liveUrl: 'https://github.com/tsmztech/mcp-server-salesforce',
+            title: 'E-commerce Admin',
+            description:
+                'This is the admin interface for my E-commerce project, providing a dashboard for managing products and tracking customer statuses during their shopping experience on the site.',
+            technologies: ['Next.js', 'TailwindCSS', 'ShadcnUI', 'Zustand', 'React Hook Form', 'Prisma', 'Stripe'],
+            liveUrl: '',
+            githubUrl: 'https://github.com/tancaodev/E-Commerce-Admin',
+            isLive: false
+        },
+        {
+            title: 'E-commerce Store',
+            description:
+                'This project provides users access to an e-commerce website, with full functionality of an e-commerce platform, and supports payment via Stripe.',
+            technologies: ['Next.js', 'TailwindCSS', 'ShadcnUI', 'Zustand', 'Prisma', 'Stripe'],
+            liveUrl: '',
+            githubUrl: 'https://github.com/tancaodev/Ecommerce-Store',
+            isLive: false
+        },
+        {
+            title: 'NASUS',
+            description:
+                'This is a final project for a university course, a website inspired by "Versus.com" that allows users to compare specifications of various tech products.',
+            technologies: ['React.js', 'Material UI', 'TailwindCSS', 'React Router v6', 'JWT', 'C#', '.NET'],
+            liveUrl: '',
+            githubUrl: 'https://github.com/tancaodev/React-Dot-Net-Final-Project',
+            isLive: false
+        },
+        {
+            title: 'TanCaoDev Portfolio',
+            description:
+                'This is a personal portfolio website introducing myself, utilizing AI tools such as Builder.io to generate components from Figma, Loveable to build the base source code, and further development using Cursor IDE.',
+            technologies: ['Next.js', 'ShadcnUI', 'TailwindCSS', 'Builder.io', 'Loveable', 'Cursor'],
+            liveUrl: '',
+            githubUrl: 'https://github.com/tancaodev/tancaodev-portfolio',
             isLive: true
-        },
-        {
-            title: 'Task Management App',
-            description: 'A collaborative task management application with real-time updates, file sharing, and project timeline visualization.',
-            technologies: ['Vue.js', 'Firebase', 'Tailwind CSS', 'Chart.js'],
-            liveUrl: 'https://example.com',
-            githubUrl: 'https://github.com'
-        },
-        {
-            title: 'Fitness Tracker',
-            description: 'A mobile-first fitness application that tracks workouts, nutrition, and provides personalized recommendations.',
-            technologies: ['React Native', 'Express', 'PostgreSQL', 'Auth0'],
-            liveUrl: 'https://example.com',
-            githubUrl: 'https://github.com'
         }
     ]
 
     return (
         <section id='projects' className='container mx-auto'>
-            <div className='relative px-4 sm:px-8 lg:px-12'>
-                <div className='mx-auto max-w-2xl lg:max-w-5xl'>
-                    <h2 className='section-title'>Featured Projects</h2>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                        {projects.map((project, index) => (
-                            <Project key={index} {...project} />
-                        ))}
-                    </div>
-                </div>
+            <h2 className='section-title'>Featured Projects</h2>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                {projects.map((project, index) => (
+                    <Project key={index} {...project} />
+                ))}
             </div>
         </section>
     )
