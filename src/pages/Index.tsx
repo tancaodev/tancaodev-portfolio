@@ -37,7 +37,7 @@ const Index: React.FC = () => {
                 <FadeInSection>
                     <Contact />
                 </FadeInSection>
-
+                
                 <Footer />
             </Suspense>
         </div>

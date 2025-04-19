@@ -1,19 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ThemeToggle from './ThemeToggle'
 import { Menu } from 'lucide-react'
-import { Drawer, DrawerContent, DrawerClose, DrawerTrigger } from '@/components/ui/drawer'
+import { Drawer, DrawerContent, DrawerClose, DrawerTrigger, DrawerTitle, DrawerHeader } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
 
 const Navigation: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [activeSection, setActiveSection] = useState('about')
-    // const sections = useRef<{ [key: string]: IntersectionObserverEntry }>({})
-    const [sections, setSections] = useState<{ [key: string]: IntersectionObserverEntry }>({})
+    const sections = useRef<{ [key: string]: IntersectionObserverEntry }>({})
+    const observerRef = useRef<IntersectionObserver | null>(null)
 
-    // console.log('isScrolled', isScrolled)
-    // console.log('activeSection', activeSection)
-    // console.log('sections', sections)
-
+    // Theo dõi scroll để thay đổi background của navigation
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50)
@@ -23,21 +20,20 @@ const Navigation: React.FC = () => {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
+    // Thiết lập Observer để theo dõi sections
     useEffect(() => {
-        const observer = new IntersectionObserver(
+        observerRef.current = new IntersectionObserver(
             (entries) => {
-                const updatedSections: { [key: string]: IntersectionObserverEntry } = { ...sections }
                 entries.forEach((entry) => {
                     const id = entry.target.id
-                    updatedSections[id] = entry
+                    sections.current[id] = entry
                 })
-                setSections(updatedSections)
 
                 // Tìm section đang hiển thị nhiều nhất
                 let maxVisible = 0
                 let currentSection = 'about'
 
-                Object.entries(updatedSections).forEach(([id, entry]) => {
+                Object.entries(sections.current).forEach(([id, entry]) => {
                     if (entry.isIntersecting && entry.intersectionRatio > maxVisible) {
                         maxVisible = entry.intersectionRatio
                         currentSection = id
@@ -46,15 +42,55 @@ const Navigation: React.FC = () => {
 
                 setActiveSection(currentSection)
             },
-            { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] }
+            { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5] }
         )
 
-        document.querySelectorAll('section[id]').forEach((section) => {
-            observer.observe(section)
+        return () => {
+            if (observerRef.current) {
+                observerRef.current.disconnect()
+            }
+        }
+    }, [])
+
+    // MutationObserver để theo dõi khi DOM thay đổi (khi Suspense load xong)
+    useEffect(() => {
+        // Tạo mutation observer để phát hiện khi các section được render
+        const mutationObserver = new MutationObserver((mutations) => {
+            // Khi DOM thay đổi, kiểm tra xem có section mới được thêm vào không
+            const sectionsToObserve = document.querySelectorAll('section[id]')
+            if (sectionsToObserve.length > 0 && observerRef.current) {
+                // Nếu đã có sections, kết nối IntersectionObserver với chúng
+                sectionsToObserve.forEach((section) => {
+                    observerRef.current?.observe(section)
+                })
+            }
         })
 
-        return () => observer.disconnect()
-    }, [sections])
+        // Bắt đầu theo dõi thay đổi trong body
+        mutationObserver.observe(document.body, {
+            childList: true,
+            subtree: true
+        })
+
+        // Cleanup khi unmount
+        return () => {
+            mutationObserver.disconnect()
+        }
+    }, [])
+
+    // Thử quan sát các section hiện có (trường hợp đã render xong)
+    useEffect(() => {
+        // Đảm bảo observer đã được tạo
+        if (!observerRef.current) return
+
+        // Tìm các section đã render
+        const sectionsToObserve = document.querySelectorAll('section[id]')
+
+        // Quan sát các section đã có
+        sectionsToObserve.forEach((section) => {
+            observerRef.current?.observe(section)
+        })
+    }, []) // Chạy một lần khi component mount
 
     const isActive = (section: string) => activeSection === section
 
@@ -146,7 +182,9 @@ const Navigation: React.FC = () => {
                         </DrawerTrigger>
                         <DrawerContent className='p-4 bg-background dark:bg-muted'>
                             <div className='mt-6 mb-4 px-2'>
-                                <h3 className='text-lg font-semibold mb-4'>Menu</h3>
+                                <DrawerHeader className='p-0'>
+                                    <DrawerTitle className='text-lg font-semibold mb-4 text-start'>Menu</DrawerTitle>
+                                </DrawerHeader>
                                 <ul className='space-y-4'>
                                     <li>
                                         <DrawerClose asChild>
