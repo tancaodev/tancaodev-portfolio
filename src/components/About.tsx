@@ -7,6 +7,8 @@ import { FaGithub } from 'react-icons/fa'
 import { FaLinkedin } from 'react-icons/fa'
 import { FaFacebook } from 'react-icons/fa'
 
+import Certificates from '@/components/Certificates'
+
 const About: React.FC = () => {
     const { toast } = useToast()
 
@@ -103,15 +105,19 @@ const About: React.FC = () => {
                 </div>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-1 gap-8 mt-4'>
+            <div className='grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 mt-4'>
                 <div>
                     <p className='text-lg mb-4'>
-                        I'm a software engineer with 1+ years of experience in front-end development, specializing in React.js, Next.js, and TypeScript. I'm
-                        passionate about building products that make a difference in people's lives or creating unique and innovative applications with
+                        I'm a software engineer with 1+ years of experience in front-end development, specializing in React.js, Next.js, and TypeScript.
+                    </p>
+                    <p className='text-lg mb-4'>
+                        I'm passionate about building products that make a difference in people's lives or creating unique and innovative applications with
                         interesting features.
                     </p>
                     <p className='text-lg'>When I'm not coding, you can find me playing games, volleyball, or hanging out with friends.</p>
                 </div>
+
+                <Certificates />
             </div>
         </section>
     )

@@ -34,6 +34,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# REF.md
+REF.md
+
 # Cursor IDE
 .cursor
 
