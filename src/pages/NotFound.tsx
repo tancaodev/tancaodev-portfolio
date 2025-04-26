@@ -1,27 +1,34 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from 'react-router-dom'
 
-const NotFound = () => {
-  const location = useLocation();
+import Footer from '@/components/Footer'
+import Navigation from '@/components/Navigation'
 
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
+const NotFound: React.FC = () => {
+    return (
+        <div className='min-h-screen'>
+            <Navigation />
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
-      </div>
-    </div>
-  );
-};
+            <div className='flex flex-col min-h-[calc(100vh-6rem)]'>
+                <div className='flex-1 flex items-center justify-center'>
+                    <div className='text-center'>
+                        <h1 className='text-9xl font-bold text-slate-900 dark:text-white mb-4'>404</h1>
+                        <h2 className='text-2xl font-semibold text-slate-700 dark:text-gray-300 mb-8'>Oops! Page Not Found</h2>
+                        <p className='text-slate-600 dark:text-gray-400 mb-8 max-w-md mx-auto'>
+                            It looks like the page you are looking for does not exist or has been moved.
+                        </p>
+                        <Link
+                            to='/'
+                            className='inline-block bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-300'
+                        >
+                            Back to Home
+                        </Link>
+                    </div>
+                </div>
+            </div>
 
-export default NotFound;
+            <Footer />
+        </div>
+    )
+}
+
+export default NotFound
