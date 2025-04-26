@@ -101,7 +101,7 @@ const Navigation: React.FC = () => {
             }`}
         >
             <div className='container mx-auto flex justify-between items-center'>
-                <a href='#' className='text-xl font-semibold'>
+                <a href='/' className='text-xl font-semibold'>
                     <span>{'<TanCaoDev />'}</span>
                 </a>
 
