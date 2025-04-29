@@ -59,6 +59,32 @@ const Project: React.FC<ProjectProps> = ({ title, description, technologies, liv
 const Projects: React.FC = () => {
     const projects = [
         {
+            title: 'TanCaoDev Portfolio',
+            description:
+                'This is a personal portfolio website introducing myself, utilizing AI tools such as Builder.io to generate components from Figma, Loveable to build the base source code, and further development using Cursor IDE.',
+            technologies: ['Next.js', 'ShadcnUI', 'TailwindCSS', 'Builder.io', 'Loveable', 'Cursor'],
+            liveUrl: '',
+            githubUrl: 'https://github.com/tancaodev/tancaodev-portfolio',
+            isLive: true
+        },
+        {
+            title: 'Landing Page - Apple Website',
+            description:
+                'Learnt from JS Mastery YouTube tutorial, this is a landing page for a website that sells Apple products, using GSAP, Three.js, and TailwindCSS.',
+            technologies: ['GSAP', 'Three.js', 'TailwindCSS'],
+            liveUrl: 'https://apple-website-tancaodev.vercel.app/',
+            githubUrl: 'https://github.com/tancaodev/apple-website/',
+            isLive: true
+        },
+        {
+            title: 'Landing Page',
+            description: 'This is a my practicing project, on how to build a landing page using TailwindCSS and React.js.',
+            technologies: ['TailwindCSS', 'React.js'],
+            liveUrl: 'https://landing-page-tancaodev.vercel.app/',
+            githubUrl: 'https://github.com/tancaodev/Landing-page',
+            isLive: true
+        },
+        {
             title: 'E-commerce Admin',
             description:
                 'This is the admin interface for my E-commerce project, providing a dashboard for managing products and tracking customer statuses during their shopping experience on the site.',
@@ -84,15 +110,6 @@ const Projects: React.FC = () => {
             liveUrl: '',
             githubUrl: 'https://github.com/tancaodev/React-Dot-Net-Final-Project',
             isLive: false
-        },
-        {
-            title: 'TanCaoDev Portfolio',
-            description:
-                'This is a personal portfolio website introducing myself, utilizing AI tools such as Builder.io to generate components from Figma, Loveable to build the base source code, and further development using Cursor IDE.',
-            technologies: ['Next.js', 'ShadcnUI', 'TailwindCSS', 'Builder.io', 'Loveable', 'Cursor'],
-            liveUrl: '',
-            githubUrl: 'https://github.com/tancaodev/tancaodev-portfolio',
-            isLive: true
         }
     ]
 
