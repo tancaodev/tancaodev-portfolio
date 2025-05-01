@@ -85,6 +85,14 @@ const Projects: React.FC = () => {
             isLive: true
         },
         {
+            title: 'Docs Tutorial',
+            description: 'This is a project that clone to Google Docs, learning how to use third party extension, libaries and using SasS.',
+            technologies: ['Tiptap', 'TailwindCSS', 'Next.js'],
+            liveUrl: 'https://docs-tutorial-tancaodev.vercel.app/',
+            githubUrl: 'https://github.com/tancaodev/docs-tutorial',
+            isLive: true
+        },
+        {
             title: 'E-commerce Admin',
             description:
                 'This is the admin interface for my E-commerce project, providing a dashboard for managing products and tracking customer statuses during their shopping experience on the site.',
