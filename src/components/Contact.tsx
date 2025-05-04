@@ -7,6 +7,9 @@ import { FaGithub } from 'react-icons/fa'
 import { FaLinkedin } from 'react-icons/fa'
 import { FaFacebook } from 'react-icons/fa'
 
+import { Input } from './ui/input'
+import { Textarea } from './ui/textarea'
+
 const Contact: React.FC = () => {
     const { toast } = useToast()
 
@@ -32,6 +35,19 @@ const Contact: React.FC = () => {
                             tancao.work@gmail.com
                         </Button>
                     </div>
+
+                    {/* TODO: SEND EMAIL FUNCTION */}
+                    {/* <div className='flex flex-col gap-3 mb-8'>
+                        <h2 className='text-2xl font-semibold text-left'>Email Me 🚀</h2>
+                        <Input type='email' placeholder='Your email' name='from_email' />
+                        <Input type='text' placeholder='Your name' name='from_name' />
+                        <Input type='text' placeholder='Subject' name='subject' />
+                        <Textarea placeholder='Message' name='message'/>
+                        <Button className='rounded-full px-6 flex justify-center items-center gap-2' onClick={handleEmailClick}>
+                            <Mail className='h-4 w-4' />
+                            tancao.work@gmail.com
+                        </Button>
+                    </div> */}
                     <div className='flex justify-center gap-4'>
                         <a
                             href='https://github.com/tancaodev'
