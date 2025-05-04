@@ -13,9 +13,17 @@ const Project: React.FC<ProjectProps> = ({ title, description, technologies, liv
             href={liveUrl || githubUrl}
             target='_blank'
             rel='noopener noreferrer'
-            className='group relative flex flex-col items-start rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition h-full'
+            className='group relative flex flex-col items-start rounded-2xl border border-zinc-100 p-6
+           duration-500
+            dark:border-zinc-700/40 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition h-full hover:-translate-y-3'
         >
-            <div className='flex-1 w-full'>
+            {/* TODO: ADD IMAGE FOR EACH PROJECT */}
+            {/* <img
+                src='https://user-images.githubusercontent.com/64485885/255202416-e1f89b04-2788-45b0-abc2-9dec616669e2.png'
+                alt=''
+                className='w-full h-[300px] rounded-[10px] object-cover shadow-[0_0_16px_2px_rgba(0,0,0,0.3)]'
+            /> */}
+            <div className='flex-1 w-full mt-6'>
                 <div className='flex items-start justify-between'>
                     <h2 className='text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100'>{title}</h2>
                     {isLive && (
