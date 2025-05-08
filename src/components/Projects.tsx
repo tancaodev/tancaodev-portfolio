@@ -1,3 +1,8 @@
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+
+import { Button } from './ui/button'
+
 interface ProjectProps {
     title: string
     description: string
@@ -5,23 +10,24 @@ interface ProjectProps {
     liveUrl?: string
     githubUrl?: string
     isLive?: boolean
+    type: string
+    image: string
 }
 
-const Project: React.FC<ProjectProps> = ({ title, description, technologies, liveUrl, githubUrl, isLive = false }) => {
+const Project: React.FC<ProjectProps> = ({ title, description, technologies, liveUrl, githubUrl, isLive = false, image }) => {
     return (
         <a
             href={liveUrl || githubUrl}
             target='_blank'
             rel='noopener noreferrer'
-            className='group relative flex flex-col items-start rounded-2xl border border-zinc-100 p-6
-           duration-500
+            className='group relative flex flex-col items-start rounded-2xl border  border-zinc-300/70 p-6 duration-500
             dark:border-zinc-700/40 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition h-full hover:-translate-y-3'
         >
             {/* TODO: ADD IMAGE FOR EACH PROJECT */}
             {/* <img
-                src='https://user-images.githubusercontent.com/64485885/255202416-e1f89b04-2788-45b0-abc2-9dec616669e2.png'
-                alt=''
-                className='w-full h-[300px] rounded-[10px] object-cover shadow-[0_0_16px_2px_rgba(0,0,0,0.3)]'
+                src={image}
+                alt={title}
+                className='w-full rounded-[10px] object-contain shadow-[0_0_16px_2px_rgba(0,0,0,0.1)]'
             /> */}
             <div className='flex-1 w-full mt-6'>
                 <div className='flex items-start justify-between'>
@@ -65,6 +71,8 @@ const Project: React.FC<ProjectProps> = ({ title, description, technologies, liv
 }
 
 const Projects: React.FC = () => {
+    const [selectedType, setSelectedType] = useState<string>('All')
+
     const projects = [
         {
             title: 'TanCaoDev Portfolio',
@@ -73,7 +81,9 @@ const Projects: React.FC = () => {
             technologies: ['Next.js', 'ShadcnUI', 'TailwindCSS', 'Builder.io', 'Loveable', 'Cursor'],
             liveUrl: '',
             githubUrl: 'https://github.com/tancaodev/tancaodev-portfolio',
-            isLive: true
+            isLive: true,
+            type: 'Personal',
+            image: '/images/projects/portfolio.png'
         },
         {
             title: 'Landing Page - Apple Website',
@@ -82,7 +92,9 @@ const Projects: React.FC = () => {
             technologies: ['GSAP', 'Three.js', 'TailwindCSS'],
             liveUrl: 'https://apple-website-tancaodev.vercel.app/',
             githubUrl: 'https://github.com/tancaodev/apple-website/',
-            isLive: true
+            isLive: true,
+            type: 'Learning',
+            image: '/images/projects/apple-website.png'
         },
         {
             title: 'Landing Page',
@@ -90,7 +102,9 @@ const Projects: React.FC = () => {
             technologies: ['TailwindCSS', 'React.js'],
             liveUrl: 'https://landing-page-tancaodev.vercel.app/',
             githubUrl: 'https://github.com/tancaodev/Landing-page',
-            isLive: true
+            isLive: true,
+            type: 'Personal',
+            image: '/assets/projects/landing-page.png'
         },
         {
             title: 'Docs Tutorial',
@@ -98,7 +112,9 @@ const Projects: React.FC = () => {
             technologies: ['Tiptap', 'TailwindCSS', 'Next.js'],
             liveUrl: 'https://docs-tutorial-tancaodev.vercel.app/',
             githubUrl: 'https://github.com/tancaodev/docs-tutorial',
-            isLive: true
+            isLive: true,
+            type: 'Learning',
+            image: '/images/projects/docs-tutorial.png'
         },
         {
             title: 'E-commerce Admin',
@@ -107,7 +123,9 @@ const Projects: React.FC = () => {
             technologies: ['Next.js', 'TailwindCSS', 'ShadcnUI', 'Zustand', 'React Hook Form', 'Prisma', 'Stripe'],
             liveUrl: '',
             githubUrl: 'https://github.com/tancaodev/E-Commerce-Admin',
-            isLive: false
+            isLive: false,
+            type: 'Personal',
+            image: '/images/projects/e-commerce-admin.png'
         },
         {
             title: 'E-commerce Store',
@@ -116,7 +134,9 @@ const Projects: React.FC = () => {
             technologies: ['Next.js', 'TailwindCSS', 'ShadcnUI', 'Zustand', 'Prisma', 'Stripe'],
             liveUrl: '',
             githubUrl: 'https://github.com/tancaodev/Ecommerce-Store',
-            isLive: false
+            isLive: false,
+            type: 'Personal',
+            image: '/images/projects/e-commerce-store.png'
         },
         {
             title: 'NASUS',
@@ -125,18 +145,87 @@ const Projects: React.FC = () => {
             technologies: ['React.js', 'Material UI', 'TailwindCSS', 'React Router v6', 'JWT', 'C#', '.NET'],
             liveUrl: '',
             githubUrl: 'https://github.com/tancaodev/React-Dot-Net-Final-Project',
-            isLive: false
+            isLive: false,
+            type: 'Personal',
+            image: '/images/projects/nasus.png'
         }
     ]
+
+    const filteredProjects = selectedType === 'All' ? projects : projects.filter((project) => project.type === selectedType)
+
+    const getTypeDescription = (type: string) => {
+        switch (type) {
+            case 'Personal':
+                return 'These are projects I developed during my university studies, including course assignments, major projects, and small practice projects to enhance my programming skills.'
+            case 'Learning':
+                return 'These are projects I learned from YouTube, Udemy, and Coursera. They help me understand how large-scale projects are structured and how to organize source code for new frameworks I am learning.'
+            case 'Certificated':
+                return 'These are certificates I earned from various online courses and training programs.'
+            default:
+                return ''
+        }
+    }
 
     return (
         <section id='projects' className='container mx-auto'>
             <h2 className='section-title'>Featured Projects</h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                {projects.map((project, index) => (
-                    <Project key={index} {...project} />
-                ))}
+            <div className='flex justify-center mb-6'>
+                <div className='flex gap-2 overflow-x-auto'>
+                    <Button
+                        variant={selectedType === 'All' ? 'default' : 'outline'}
+                        className='rounded-full text-base whitespace-nowrap'
+                        onClick={() => setSelectedType('All')}
+                    >
+                        All Projects
+                    </Button>
+                    <Button
+                        variant={selectedType === 'Personal' ? 'default' : 'outline'}
+                        className='rounded-full text-base whitespace-nowrap'
+                        onClick={() => setSelectedType('Personal')}
+                    >
+                        Personal Projects
+                    </Button>
+                    <Button
+                        variant={selectedType === 'Learning' ? 'default' : 'outline'}
+                        className='rounded-full text-base whitespace-nowrap'
+                        onClick={() => setSelectedType('Learning')}
+                    >
+                        Learning Projects
+                    </Button>
+                    <Button
+                        variant={selectedType === 'Certificated' ? 'default' : 'outline'}
+                        className='rounded-full text-base whitespace-nowrap'
+                        onClick={() => setSelectedType('Certificated')}
+                    >
+                        Certificated Projects
+                    </Button>
+                </div>
             </div>
+
+            {selectedType !== 'All' && (
+                <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className='text-center text-zinc-600 dark:text-zinc-400 mb-8'>
+                    {getTypeDescription(selectedType)}
+                </motion.p>
+            )}
+
+            <AnimatePresence mode='wait'>
+                <motion.div
+                    key={selectedType}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+                >
+                    {filteredProjects.length > 0 ? (
+                        filteredProjects.map((project, index) => <Project key={index} {...project} />)
+                    ) : (
+                        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className='col-span-full text-center text-zinc-600 dark:text-zinc-400 py-8'>
+                            There is no {selectedType.toLowerCase()} project at the moment.
+                        </motion.p>
+                    )}
+                </motion.div>
+            </AnimatePresence>
         </section>
     )
 }
